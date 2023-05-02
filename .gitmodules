@@ -3,6 +3,6 @@
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke
 
 [submodule "themes/papermod"]
-	path = themes/papermod
+	path = themes/PaperMod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
 
