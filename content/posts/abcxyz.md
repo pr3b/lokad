@@ -321,12 +321,12 @@ This script also sorts the items by revenue.
 
 ```Python
   // Calculate ABC Classification
-  Items.ABCClassification = if Items.CumulativeSoldTotalPricePercentage <= 80 then
-      "A"
-    else if Items.CumulativeSoldTotalPricePercentage <= 95 then
-      "B"
-    else
-      "C"
+  Items.ABCClassification = if Items.SoldTotalPricePercentage <= 50 then
+        "A"
+      else if Items.SoldTotalPricePercentage <= 80 then
+        "B"
+      else
+        "C"
 ```
 
 **8. Calculate the Coefficient of Variation:** Calculate the Coefficient of Variation for each product by using the following script:

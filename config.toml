@@ -2,4 +2,3 @@ baseURL = 'http://example.org/'
 languageCode = 'en-us'
 title = 'Lokad Assignment'
 theme = 'papermod'
-extended = true
