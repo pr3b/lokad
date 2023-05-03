@@ -4,48 +4,46 @@ date: 2023-05-02T15:10:59+07:00
 draft: false
 ---
 
-ABC-XYZ analysis is a categorization tool to identify the best-performing products in one’s catalog to determine appropriate service and safety stock levels. The goal is to prioritize actions and resources accordingly.
+ABC-XYZ analysis is a categorization tool used to identify the best-performing products in a catalog and to determine appropriate service and safety stock levels. The goal is to prioritize actions and allocate resources accordingly.
 
-This guide will walk you through the steps to create an ABC XYZ analysis using the Envision programming language.
+This guide will walk you through the steps to create an ABC-XYZ analysis using the Envision programming language.
 
 ## Prerequisites
 
 - Prior understanding of the Envision programming language.
-- Ensure that you have access to the Envision Playground and the Lokad dataset.
+- Access to the Envision Playground and the Lokad dataset.
 
 ## Steps to Perform the ABC XYZ Analysis
 
-## 1. Data Collection:
+## 1. Data Collection
 
-The first step is to collect data on inventory, such as quantity on hand, cost of goods, and number of times an item has been sold in a specific period. For this guide, we will use the packaged dataset available at [https://docs.lokad.com/gallery/dataset-one-echelon-2017/](https://docs.lokad.com/gallery/dataset-one-echelon-2017/.)
+The first step is to collect data on sales, such as items, sell price, and number of times an item has been sold in a specific period. For this guide, we will use the packaged dataset available at [here.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/.)
 
-## 2. Define ABC and XYZ Classification Rules:
+## 2. Define ABC and XYZ Classification Rules
 
-Before conducting an ABC XYZ analysis, define the ABC and XYZ classification rules.
+Before conducting an ABC-XYZ analysis, define the ABC and XYZ classification rules.
 
-- ABC Classification: Classify products into three categories: A, B, and C, based on their revenue contribution:
+- **ABC Classification:** Classify products into three categories: A, B, and C, based on their revenue contribution:
+  - **A** products generate a cumulative revenue of less than or equal to 50%.
+  - **B** products generate cumulative revenue between 50-80%.
+  - **C** products generate more than 80% cumulative revenue.
+- **XYZ Classification:** Classify products into three categories: X, Y, and Z, based on their demand variability:
+  - **X** products have stable demand (=<50%).
+  - **Y** products have moderate demand variability (50-100%).
+  - **Z** products have high demand variability (>100%).
 
-  1.  A products generate a cumulative revenue of less than 50%.
-  2.  B products generate cumulative revenue between 50-80%.
-  3.  C products generate more than 80% cumulative revenue.
-
-- XYZ Classification: Classify products into three categories: X, Y, and Z, based on their demand variability:
-  1.  X products have stable demand (<50%).
-  2.  Y products have moderate demand variability (50-100%).
-  3.  Z products have high demand variability (>100%).
-
-## 3. Upload the Lokad Dataset:
+## 3. Upload the Lokad Dataset
 
 Load data from the Lokad dataset; this can be done in two ways:
 
-**Envision Playground**
+**3. a) Envision Playground**
 
 - Access [https://try.lokad.com](https://try.lokad.com) using a browser of your choice.
 - Click on the **Files** tab.
 - Click **Upload** and load the downloaded files of the [Lokad data set.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
   ![Lokad Datasets](/images/dataset.png "Datasets")
 
-**Use Your Lokad Account**
+**3. b) Use Your Lokad Account**
 
 - Download the TSV files using the links present [here.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
 - Then, go to the [Files tab](https://go.lokad.com/files/#/) of your Lokad account.
@@ -56,9 +54,9 @@ Your Lokad account should look like this:
 
 ![Lokad Dashboard](/images/dashboard.png "Dashboard")
 
-For the purpose of this guide, we will be using the [Envision playground.](https://try.lokad.com/)
+> For the purpose of this guide, we will be using the [Envision playground.](https://try.lokad.com/)
 
-## 4. Load the Lokad Dataset:
+## 4. Load the Lokad dataset
 
 Load the **Items** and **Orders** tables from the Lokad dataset by using the following script:
 
@@ -92,11 +90,29 @@ NetAmount : number
 Currency : text
 ```
 
-This script joins the Orders table and the Items table on the Id column so you have the SKU's sell price and the quantity sold for each order.
+```js
+  // Join table Orders and Items
+
+  show table "OrderedItems" with
+  Items.Id
+  Items.Name
+  Items.SellPrice
+  Orders.Date
+  Orders.Quantity
+  Orders.NetAmount
+  Orders.Currency
+```
+
+![Joined Table](/images/joined-table.png "Joined")
+
+This script joins the **Orders** table and the **Items** table on the Id column so you have the product's sell price and the quantity sold for each order. We also filtered orders from 2017 only - You can change it according to the year of analysis you want to run.
+
+## 5. Calculate the total product sold per Month
+
+Calculate the total sales of each product per month by using this script:
 
 ```js
   // Items sold per month
-
   Items.Sold = sum(Orders.Quantity)
     when (Orders.Date <= date(2017, 8, 31))
     default Items.SellPrice
@@ -112,7 +128,9 @@ This script joins the Orders table and the Items table on the Id column so you h
     Items.MonthlySold
 ```
 
-## 5. Calculate Total Revenue for Each Product:
+![Items Sold per Month](/images/soldpermonth.png "MonthlySales")
+
+## 6. Calculate the annual revenue for each product
 
 Calculate the total annual revenue for each product by using this script:
 
@@ -308,23 +326,48 @@ Calculate the total annual revenue for each product by using this script:
   Items.YearlySold
 ```
 
-This script multiplies the SKU's sell price by the quantity sold for each order to get the net revenue for that SKU and then adds the net revenue for each SKU to get the total revenue for that SKU.
+![Items Sold per Year](/images/soldperyear.png "YearlySales")
 
-## 6. Calculate Cumulative Revenue:
+This script will add all the total monthly sales of each product into the annual revenue of that product.
+
+## 7. Calculate cumulative revenue
 
 Calculate the cumulative revenue percentages for each product by using the following script:
 
 ```js
-  // Calculate the cumulative percentage of sales
-  Items.CumulativeSoldTotalPricePercentage = cumsum(Items.SoldTotalPricePercentage) scan Items.Id
+  // Cummulative Sold Total Percentage
+  MaxTotalSoldCummulative = max(cumsum(Items.AnnualSoldTotalPrice) scan Items.Id)
+  Items.CumulativeSold = cumsum(Items.AnnualSoldTotalPrice) scan Items.Id
+  Items.CumulativeSoldTotalPricePercentage = (Items.CumulativeSold/ MaxTotalSoldCummulative) * 100
 
   show table "Products sold in 2017" with
+  Items.CumulativeSold
   Items.CumulativeSoldTotalPricePercentage
 ```
 
-This script also sorts the items by revenue.
+![Cumulative Revenue](/images/cumulative.png "Cumulative")
 
-## 7. Calculate ABC Classification:
+## 8. Calculate the coefficient of variation
+
+Calculate the Coefficient of Variation for each product by using the following script:
+
+```js
+  // Standard Deviation
+  // Calculate the standard deviation of the demand per item (XYZ classification)
+  Items.DemandStandardDeviation = stdev(Orders.Quantity);
+
+  // Calculate the coefficient of variation (CV) per item
+  Items.CoefficientOfVariation =
+  Items.DemandStandardDeviation / avg(Orders.Quantity);
+
+  show table "Products sold in 2017" with
+  Items.DemandStandardDeviation
+  Items.CoefficientOfVariation
+```
+
+![Standard Deviation](/images/stdev.png "Stdev")
+
+## 9. Calculate ABC Classification
 
 Classify products into A, B, or C categories based on their revenue contribution using the following script:
 
@@ -346,43 +389,36 @@ Classify products into A, B, or C categories based on their revenue contribution
   Items.ABCClassification
 ```
 
-## 8. Calculate the Coefficient of Variation:
-
-Calculate the Coefficient of Variation for each product by using the following script:
-
-```js
-  // Standard Deviation
-  // Calculate the standard deviation of the demand per item (XYZ classification)
-  Items.DemandStandardDeviation = stdev(Orders.Quantity);
-
-  // Calculate the coefficient of variation (CV) per item
-  Items.CoefficientOfVariation =
-  Items.DemandStandardDeviation / avg(Orders.Quantity);
-
-  show table "Products sold in 2017" with
-  Items.DemandStandardDeviation
-  Items.CoefficientOfVariation
-```
+![ABC Classification](/images/abc-class.png "ABC-Class")
 
 This script also sorts the items by demand variability
 
-## 9. Calculate XYZ Classification:
+## 10. Calculate XYZ Classification
 
-Classify products into X, Y, or Z categories based on their demand variability using the following script.
+Using the following script, classify products into X, Y, or Z categories based on their demand variability.
 
 ```js
-  // XYZ Classification
-  // Calculate the XYZ classification based on the coefficient of variation (CV)
-  Items.XYZClassification = if Items.CoefficientOfVariation <= 0.1 then
-      "X"
-    else if Items.CoefficientOfVariation <= 0.25 then
-      "Y"
-    else
-      "Z"
+  /**
+  XYZ Classification
+  */
+  // Define the thresholds for classifying items as X, Y, or Z
+  VarianceThresholdX = 50
+  VarianceThresholdY = 100
+
+  Items.STDVariance = stdev(Orders.Quantity)
+
+  Items.XYZClassification = if Items.STDVariance <= VarianceThresholdX then
+        "X"
+      else if Items.STDVariance <= VarianceThresholdY then
+        "Y"
+      else
+        "Z"
 
   show table "Products sold in 2017" with
   Items.XYZClassification
 ```
+
+![XYZ Classification](/images/xyz-class.png "XYZ-Class")
 
 The final table displays the ABC XYZ analysis for each SKU, with the ABC classification determined by the product's revenue percentiles and the XYZ classification determined by the coefficient of variation of the product's demand.
 
