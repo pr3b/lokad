@@ -34,8 +34,6 @@ Establish rules for ABC and XYZ classifications
 
 ## 3. Upload the Dataset
 
-Load the dataset:
-
 ### **3.1. Envision Playground**
 
 - Access the [Lokad Playground](https://try.lokad.com) using your browser.
