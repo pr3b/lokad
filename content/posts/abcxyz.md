@@ -43,7 +43,7 @@ Load data from the Lokad dataset; this can be done in two ways:
 - Access [https://try.lokad.com](https://try.lokad.com) using a browser of your choice.
 - Click on the **Files** tab.
 - Click **Upload** and load the downloaded files of the [Lokad data set.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
-  ![Lokad Datasets](/resources/_gen/images/dataset.png "Datasets")
+  ![Lokad Datasets](/static/images/dataset.png "Datasets")
 
 **Use Your Lokad Account**
 
@@ -54,7 +54,7 @@ Load data from the Lokad dataset; this can be done in two ways:
 
 Your Lokad account should look like this:
 
-![Lokad Dashboard](/dashboard.png "Dashboard")
+![Lokad Dashboard](/images/dashboard.png "Dashboard")
 
 For the purpose of this guide, we will be using the [Envision playground.](https://try.lokad.com/)
 
