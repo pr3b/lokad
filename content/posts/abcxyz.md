@@ -10,8 +10,8 @@ This guide will walk you through the process of conducting an ABC-XYZ analysis u
 
 ## Prerequisites
 
-- Basic understanding of the Envision programming language
-- Access to the Envision Playground and the Lokad dataset
+- Basic understanding of the Envision programming language.
+- Access to the Envision Playground and the Lokad dataset.
 
 ## Steps to Perform the ABC XYZ Analysis
 
@@ -21,16 +21,16 @@ Collect sales data, such as items, sell price, and the number of times an item h
 
 ## 2. Define ABC and XYZ Classification Rules
 
-Establish rules for ABC and XYZ classifications:
+Establish rules for ABC and XYZ classifications
 
 - **ABC Classification:** Categorize products into A, B, and C based on their revenue contribution:
-  - **A:** <=50% cumulative revenue
-  - **B:** 50-80% cumulative revenue
-  - **C:** >80% cumulative revenue
+  - **A:** <=50% cumulative revenue.
+  - **B:** 50-80% cumulative revenue.
+  - **C:** >80% cumulative revenue.
 - **XYZ Classification:** Categorize products into X, Y, and Z based on their demand variability:
-  - **X:** Stable demand (=<50%)
-  - **Y:** Moderate demand variability (50-100%)
-  - **Z:** High demand variability (>100%)
+  - **X:** Stable demand (=<50%).
+  - **Y:** Moderate demand variability (50-100%).
+  - **Z:** High demand variability (>100%).
 
 ## 3. Upload the Dataset
 
@@ -48,11 +48,11 @@ Load the dataset:
 
 - Download the TSV files using the links [here.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
 - Go to the [Files tab](https://go.lokad.com/files/#/) tab of your Lokad account.
-- Create a new folder `/sample` (following the convention used in this documentation).
+- Create a new folder.
   {{< hint info >}}
   We are using `/sample` as the new folder name.
   {{< /hint >}}
-- Upload these files into the newly created folder.
+- Upload the files into the newly created folder.
 
 Your Lokad account should look like this:
 
@@ -62,7 +62,7 @@ Your Lokad account should look like this:
 We will be using the method mentioned in [3.1. section](/posts/abcxyz/#31-envision-playground) for the following steps.
 {{< /hint >}}
 
-## 4. Load the Dataset:
+## 4. Load the Dataset
 
 Load the **Items** and **Orders** tables from the Lokad dataset by using the following script:
 
@@ -113,7 +113,7 @@ This script joins the **Orders** and the **Items** tables on the Id column to ob
 
 ![Joined Table](/images/joined-table.png "Joined")
 
-## 5. Calculate Total Product Sales per Month:
+## 5. Calculate Total Product Sales per Month
 
 Calculate the total sales of each product per month using this script:
 
@@ -136,7 +136,7 @@ Calculate the total sales of each product per month using this script:
 
 ![Items Sold per Month](/images/soldpermonth.png "MonthlySales")
 
-## 6. Calculate Annual Revenue for Each Product:
+## 6. Calculate Annual Revenue for Each Product
 
 Calculate the total annual revenue for each product using this script:
 
@@ -336,7 +336,7 @@ This script adds all the total monthly sales of each product into the annual rev
 
 ![Items Sold per Year](/images/soldperyear.png "YearlySales")
 
-## 7. Calculate Cumulative Revenue:
+## 7. Calculate Cumulative Revenue
 
 Calculate the cumulative revenue percentages for each product using this script:
 
@@ -353,7 +353,7 @@ Calculate the cumulative revenue percentages for each product using this script:
 
 ![Cumulative Revenue](/images/cumulative.png "Cumulative")
 
-## 8. Calculate Coefficient of Variation:
+## 8. Calculate Coefficient of Variation
 
 Calculate the Coefficient of Variation for each product using this script:
 
@@ -368,7 +368,7 @@ Calculate the Coefficient of Variation for each product using this script:
 
 ![Standard Deviation](/images/stdev.png "Stdev")
 
-## 9. Calculate ABC Classification:
+## 9. Calculate ABC Classification
 
 Classify products into A, B, or C categories based on their revenue contribution using this script:
 
@@ -390,7 +390,7 @@ Classify products into A, B, or C categories based on their revenue contribution
   Items.ABCClassification
 ```
 
-## 10. Calculate XYZ Classification:
+## 10. Calculate XYZ Classification
 
 Classify products into X, Y, or Z categories based on their demand variability using this script:
 
