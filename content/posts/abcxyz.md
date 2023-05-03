@@ -41,9 +41,12 @@ Load the dataset:
 - Access the [Lokad Playground](https://try.lokad.com) using your browser.
 - Click the **Files** tab.
 - Click **Upload** and load the [dataset.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
-  > We are using `/sample` as the new folder name
 
-![Lokad Datasets](/images/ezgif.com-video-to-gif.gif "Datasets")
+{{< hint info >}}
+We are using `/sample` as the new folder name
+{{< /hint >}}
+
+![Lokad Dataset](/images/ezgif.com-video-to-gif.gif "Dataset")
 
 ### **3.2. Use Your Lokad Account**
 
@@ -56,7 +59,9 @@ Your Lokad account should look like this:
 
 ![Lokad Dashboard](/images/dashboard.png "Dashboard")
 
-> We will be using the method [mentioned in 3.1.](/posts/abcxyz/#31-envision-playground) section for the following steps
+{{< hint info >}}
+We will be using the method mentioned in [3.1. section](/posts/abcxyz/#31-envision-playground) for the following steps
+{{< /hint >}}
 
 ## 4. Load the Dataset:
 
@@ -105,7 +110,7 @@ Currency : text
   Orders.Currency
 ```
 
-This script joins the **Orders** table and the **Items** tables on the Id column to obtain the product's sell price and quantity sold for each order. We also filtered orders from 2017 only - you can change this according to the year of analysis you want to run.
+This script joins the **Orders** and the **Items** tables on the Id column to obtain the product's sell price and quantity sold for each order. We also filtered orders from 2017 only - you can change this according to the year of analysis you want to run.
 
 ![Joined Table](/images/joined-table.png "Joined")
 
@@ -328,7 +333,7 @@ Calculate the total annual revenue for each product using this script:
   Items.YearlySold
 ```
 
-This script adds all the total monthly sales of each product into the annual revenue of that product.
+This script adds all the total monthly sales of each product into the annual revenue.
 
 ![Items Sold per Year](/images/soldperyear.png "YearlySales")
 
@@ -411,7 +416,7 @@ Classify products into X, Y, or Z categories based on their demand variability u
   Items.XYZClassification
 ```
 
-The final table displays the ABC-XYZ analysis for each SKU, with the ABC classification determined by the product's revenue percentiles and the XYZ classification determined by the coefficient of variation of the product's demand.
+The final table displays the ABC-XYZ analysis for each product, with the ABC classification determined by the product’s revenue percentiles and the XYZ classification determined by the coefficient of variation of the product’s demand.
 
 ![Table Result](/images/abcxyz-analysis-table.png "Result")
 ![Table Result 2](/images/abcxyz-analysis-table-2.png "Result-2")
