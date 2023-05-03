@@ -109,7 +109,7 @@ Currency : text
   Orders.Currency
 ```
 
-This script joins the **Orders** and the **Items** tables on the Id column to obtain the product's sell price and quantity sold for each order. We also filtered orders from 2017 only - you can change this according to the year of analysis you want to run.
+This script joins the **Orders** and the **Items** tables on the Id column to obtain the product's sell price and quantity sold for each order.
 
 ![Joined Table](/images/joined-table.png "Joined")
 
@@ -133,6 +133,8 @@ Calculate the total sales of each product per month using this script:
     Items.Sold
     Items.MonthlySold
 ```
+
+We filtered orders from 2017 only. You can change this according to the year of analysis you want to run.
 
 ![Items Sold per Month](/images/soldpermonth.png "MonthlySales")
 
