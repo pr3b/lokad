@@ -43,7 +43,7 @@ Load data from the Lokad dataset; this can be done in two ways:
 - Access [https://try.lokad.com](https://try.lokad.com) using a browser of your choice.
 - Click on the **Files** tab.
 - Click **Upload** and load the downloaded files of the [Lokad data set.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
-  ![Lokad Datasets](/dataset.png "Datasets")
+  ![Lokad Datasets](/resources/_gen/images/dataset.png "Datasets")
 
 **Use Your Lokad Account**
 
