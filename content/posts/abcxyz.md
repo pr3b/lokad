@@ -32,31 +32,33 @@ Establish rules for ABC and XYZ classifications:
   - **Y:** Moderate demand variability (50-100%)
   - **Z:** High demand variability (>100%)
 
-## 3. Upload the Lokad Dataset
+## 3. Upload the Dataset
 
-Load data from the Lokad dataset in two ways:
+Load the dataset:
 
-**3. a) Envision Playground**
+### **3.1. Envision Playground**
 
-- Access the [https://try.lokad.com](https://try.lokad.com) using your browser.
+- Access the [Lokad Playground](https://try.lokad.com) using your browser.
 - Click the **Files** tab.
-- Click **Upload** and load the downloaded files of the [Lokad data set.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
-  ![Lokad Datasets](/images/dataset.png "Datasets")
+- Click **Upload** and load the [dataset.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
+  > We are using `/sample` as the new folder name
 
-**3. b) Use Your Lokad Account**
+![Lokad Datasets](/images/ezgif.com-video-to-gif.gif "Datasets")
+
+### **3.2. Use Your Lokad Account**
 
 - Download the TSV files using the links [here.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
 - Go to the [Files tab](https://go.lokad.com/files/#/) tab of your Lokad account.
-- Create a folder named `/sample` (following the convention used in this documentation).
-- Re-upload these files into the newly created folder.
+- Create a new folder named `/sample` (following the convention used in this documentation).
+- Upload these files into the newly created folder.
 
 Your Lokad account should look like this:
 
 ![Lokad Dashboard](/images/dashboard.png "Dashboard")
 
-> For this guide, we'll use the [Envision playground.](https://try.lokad.com/)
+> We will be using the method [mentioned in 3.1.](/posts/abcxyz/#31-envision-playground) section for the following steps
 
-## 4. Load the Lokad Dataset:
+## 4. Load the Dataset:
 
 Load the **Items** and **Orders** tables from the Lokad dataset by using the following script:
 
