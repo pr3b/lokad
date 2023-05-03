@@ -4,7 +4,7 @@ date: 2023-05-02T15:10:59+07:00
 draft: false
 ---
 
-ABC-XYZ analysis is a powerful inventory management tool that classifies products **based** on their performance and demand variability.
+ABC-XYZ analysis is a powerful inventory management tool that classifies products based on their performance and demand variability.
 
 This guide will walk you through the process of conducting an ABC-XYZ analysis using the Envision programming language.
 
