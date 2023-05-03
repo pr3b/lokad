@@ -34,7 +34,7 @@ Establish rules for ABC and XYZ classifications
 
 ## 3. Upload the Dataset
 
-### **3.1. Envision Playground**
+### 3.1. Envision Playground
 
 - Access the [Lokad Playground](https://try.lokad.com) using your browser.
 - Click the **Files** tab.
@@ -42,13 +42,13 @@ Establish rules for ABC and XYZ classifications
 
 ![Lokad Dataset](/images/ezgif.com-video-to-gif.gif "Dataset")
 
-### **3.2. Use Your Lokad Account**
+### 3.2. Use Your Lokad Account
 
 - Download the TSV files using the links [here.](https://docs.lokad.com/gallery/dataset-one-echelon-2017/)
 - Go to the [Files tab](https://go.lokad.com/files/#/) tab of your Lokad account.
 - Create a new folder.
   {{< hint info >}}
-  We are using `/sample` as the new folder name.
+  **Note:** We are using `/sample` as the new folder name.
   {{< /hint >}}
 - Upload the files into the newly created folder.
 
@@ -57,7 +57,7 @@ Your Lokad account should look like this:
 ![Lokad Dashboard](/images/dashboard.png "Dashboard")
 
 {{< hint info >}}
-We will be using the method mentioned in [3.1. section](/posts/abcxyz/#31-envision-playground) for the following steps.
+**Note:** We will be using the method mentioned in [3.1. section](/posts/abcxyz/#31-envision-playground) for the following steps.
 {{< /hint >}}
 
 ## 4. Load the Dataset
